@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void printint(int num){
+                int arr[100];
+                int r,i,j;
+                i=0;
+                j=0;
+                while(num!=0){
+                  r=num%10;
+                  arr[i]=r;
+                  i++;
+                  num=num/10;
+                }
+                for(j=0;j<i;j++){
+                  printf("%d\n",arr[j]);
+                }
+}
+
+int main(){
+          int num;
+          printf("enter the number:\n");
+          scanf("%d", &num);
+          printint(num);
+}
