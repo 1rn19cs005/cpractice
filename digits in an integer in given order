@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int digit(int num)
+{
+	int arr[10];
+	int i=0;
+	int j,r;
+	while(num!=0){
+		r=num%10;
+		arr[i]=r;
+		i++;
+		num = num/10;
+	}
+	for(j=i-1;j>-1;j--){
+		printf("%d\n", arr[j]);
+	}
+}
+
+
+int main(){
+	
+	int num;
+	printf("enter the number:\n");
+	scanf("%d", &num);
+	digit(num);
+	return 0;
+}	
