@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void print(int num){
+	int even[100], odd[100];
+	int r,i,j,k;
+	i=0;
+	j=0;
+	k=0;
+	while(num!=0)
+	{
+		r=num%10;
+		if(r%2==0)
+		{
+			even[i]=r;
+			i++;
+		}
+		else
+		{
+			odd[j]=r;
+			j++;
+		}
+		num = num/10;
+	}
+	printf("even integers are\n");
+	for(k=i-1;k>-1;k--){
+		printf("%d\t",even[k]);
+	}
+
+	printf("\nodd integers are\n");
+	for(k=j-1;k>-1;k--){
+		printf("%d\t",odd[k]);
+	}
+	printf("\n");
+}
+
+
+int main(){
+	int num;
+	printf("enter the number\n");
+	scanf("%d",&num);
+	print(num);
+	return 0;
+}
