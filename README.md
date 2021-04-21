@@ -1,3 +1,3 @@
 # cpractice
 ## C PROGRAMS
-* 1. digits in an integer 
+ 1. digits in an integer 
