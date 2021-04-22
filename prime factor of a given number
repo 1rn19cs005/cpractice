@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void primeFactor(int num){
+    int i, j, flag;
+    printf("all prime factors are:\n");
+    for(i=2; i<=num; i++){
+        if(num%i==0){
+            flag=1;
+            for(j=2; j<=i/2; j++){
+                if(i%j==0){
+                    flag=0;
+                    break;
+                }
+            }
+            if(flag == 1){
+                printf("%d\t", i);
+            }
+        }
+    }
+    return;
+}
+
+int main(){
+    int num;
+    printf("enter the number:\n");
+    scanf("%d", &num);
+    primeFactor(num);
+    return 0;
+}
