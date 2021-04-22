@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int happyNumber(int num){
+    int r =0, sum=0;
+    while(num>0){
+        r =  num%10;
+        sum = sum + (r*r);
+        num = num/10;
+    }
+    return sum;
+}
+
+int main(){
+    int num;
+    printf("enter the number:\n");
+    scanf("%d", &num);
+    int result = num;
+    while(result!=1 && result!=4){
+        result = happyNumber(result);
+    }
+    if(result==1)
+        printf("it is a happy number\n");
+    else if(result==4)
+        printf("it is not a happy number\n");
+    return 0;
+}
