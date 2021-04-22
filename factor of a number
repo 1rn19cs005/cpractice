@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void printFactor(int num){
+    int i;
+    printf("factors are:");
+    for(i=1; i<=num; i++){
+        if (num%i==0){
+            printf("%d\t", i);
+        }
+    }
+    return;
+}
+
+int main(){
+    int num;
+    printf("enter the number:");
+    scanf("%d", &num);
+    printFactor(num);
+    return 0;
+}
