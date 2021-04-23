@@ -1,0 +1,55 @@
+#include<stdio.h>
+
+void read_arr(int arr[20],int arr_size)
+{
+    int i;
+    for(i=0;i<arr_size;i++)
+        scanf("%d",&arr[i]);
+}
+void print_arr(int arr[20],int arr_size)
+{
+    int i;
+    for(i=0;i<arr_size;i++)
+        printf("%d\t",arr[i]);
+}
+void search(int arr[10],int arr_size)
+{
+    int key,i,a[10],j;
+    j=0;
+    int count=0;
+    printf("enter the key\n");
+    scanf("%d",&key);
+    for(i=0;i<arr_size;i++)
+    {
+        if(key==arr[i])
+        {
+            a[j]=i+1;
+            j++;
+            count++;
+        }
+        
+    }
+    /*for(i=0;i<j;i++)
+    {
+        printf("%d",a[i]);
+    }*/
+    if(count!=0){
+            printf("\nsearch is successful\n");
+            printf("\nfirst occurence:%d", a[0]);
+            printf("\nsecond occurence:%d",a[j-1]);
+    }
+    else
+        printf("search unsuccessfull\n");
+}
+int main()
+{
+    // array declaration 
+    int arr[20], arr_size;
+    printf("Enter the number of elements\n");
+    scanf("%d", &arr_size);
+    read_arr(arr, arr_size);
+    //printf("enter the array elements\n");
+    printf("The array elements are \n");
+    print_arr(arr, arr_size);
+    search(arr,arr_size);
+}
