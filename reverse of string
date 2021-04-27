@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define max 100
+char stack[100];
+int top=-1;
+
+void push(char z){
+    if(top==max){
+        printf("overflow\n");
+        return;
+    }
+    top++;
+    stack[top]=z;
+    return;
+}
+
+char pop(){
+    if(top==-1){
+        return NULL;
+    }
+    char elem;
+    elem = stack[top];
+    top--;
+    return elem;
+}
+
+
+int main(){
+    char str[100];
+    printf("enter the string\n");
+    gets(str);
+    for(int i=0; i<strlen(str); i++){
+        push(str[i]);
+    }
+    char ch = pop();
+    while(ch){
+        printf("%c",ch);
+        ch=pop();
+    }
+    return 0;
+}
