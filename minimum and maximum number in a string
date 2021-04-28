@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main(){
+    char ch[100];
+    int val[100];
+    int c=0;
+    do{
+        gets(ch);
+        val[c]=atoi(ch);
+        if(val[c]!=0)
+            c++;
+    }while(strcmp(ch,"done"));
+    int max=val[0];
+    for(int i=1; i<c; i++){
+        if(max<val[i])
+            max=val[i];
+    }
+    int min=val[0];
+    for(int i=1; i<c;i++){
+        if (min>val[i])
+            min=val[i];
+    }
+    printf("maximum=%d minimum=%d", max, min);
+    return 0;
+}
