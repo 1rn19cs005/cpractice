@@ -1,0 +1,128 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int empid;
+    struct node *link;
+};
+
+typedef struct node *NODE;
+
+NODE getnode();
+NODE insert(NODE first);
+NODE join_sll(NODE first, NODE second);
+void display(NODE first);
+NODE sortList(NODE first);
+
+int main()
+{
+    NODE first = NULL, second = NULL;
+    printf("Inserting the First SLL\n");
+    int m;
+    printf("enter the number of elements\n");
+    scanf("%d",&m);
+    for(int i=0;i<m;i++){
+        first = insert(first);
+    }
+
+    printf("Inserting the Second SLL\n");
+    int n;
+    printf("enter the number of elements:\n");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+        second = insert(second);
+    printf("\nJoining and sorting the two SLL\n:");
+    first = join_sll(first, second);
+    display(first);
+    sortList(first);
+
+    printf("\nThe new SLL is \n");
+    display(first);
+    return 0;
+}
+
+NODE getnode()
+{
+    NODE x;
+    x = (NODE)malloc(sizeof(struct node));
+    if (x == NULL)
+    {
+        printf("\nMemory was not allocated !");
+        exit(0);
+    }
+    return x;
+}
+
+NODE insert(NODE first)
+{
+    int x;
+    printf("Enter the number to be inserted : ");
+    scanf("%d", &x);
+
+    NODE new = getnode();
+    new->empid = x;
+    new->link = first;
+    first = new;
+    return first;
+}
+
+
+
+void display(NODE first)
+{
+    if (first == NULL)
+    {
+        printf("The LL is empty!\n");
+        return;
+    }
+    printf("The LL is : \n");
+    NODE curr = first;
+    while (curr != NULL)
+    {
+        printf("%d\n", curr->empid);
+        curr = curr->link;
+    }
+}
+
+NODE join_sll(NODE first, NODE second)
+{
+    if (first == NULL)
+    {
+        first = second;
+        return first;
+    }
+    NODE curr = first;
+    while(curr->link != NULL)
+        curr = curr->link;
+    curr->link = second;
+    return first;
+}
+
+
+NODE sortList(NODE first){
+     NODE current = first, index = NULL;  
+        int temp;  
+          
+        if(first == NULL) {  
+            return NULL;  
+        }  
+        else {  
+            while(current != NULL) {  
+                  
+                index = current->link;  
+                  
+                while(index != NULL) {  
+                    
+                    if(current->empid > index->empid) {  
+                        temp = current->empid;  
+                        current->empid = index->empid;  
+                        index->empid = temp;  
+                    }  
+                    index = index->link;  
+                }  
+                current = current->link;  
+            }      
+        } 
+        return first;
+    }  
