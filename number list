@@ -1,0 +1,39 @@
+#include<stdio.h>
+int largest(int a[],int n)
+{
+    int max=a[0];
+    for(int i=0;i<n;i++)
+    {
+        if(max<a[i])
+            max=a[i];
+    }
+    return max;
+}
+void print_rest(int a[],int n,int max)
+{
+    int i=0;
+    printf("Elements before largest:\n");
+    while(a[i]!=max)
+    {
+        printf("%d ",a[i]);
+        i++;
+    }
+    printf("\nElements after largest :\n");
+    for(int k=i+1;k<n;k++)
+        printf("%d ",a[k]);
+}
+int main()
+{
+    int n;
+    printf("Enter the number of elements\n");
+    scanf("%d",&n);
+    int a[n],res,max;
+    printf("Enter the elements\n");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    res=largest(a,n);
+    printf("Maximum element within the given elements %d\n",res);
+    print_rest(a,n,res);
+}
