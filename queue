@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<string.h>
+#include <stdlib.h> 
+void push(int *s,int *rear,int n)
+{
+	int elem;
+	scanf("%d",&elem);
+	if(*rear==n-1)
+	{
+		printf("queue overflow\n");
+	}
+	(*rear)++;
+	s[*rear]=elem;
+}
+void display(int *s,int front ,int rear)
+{
+	printf("elem\n");
+	for(int i=front;i<=rear;i++)
+	{
+		printf("%d \n",s[i]);
+	}
+}
+void pop(int *a,int *f,int *r,int *n)
+{
+    if(*f>*r)
+    {
+        printf("Queue is in under flow\n");
+        return;
+    }
+    (*f)++;
+	(*n)--;
+	a=realloc(a,(*n)*sizeof(a));
+}
+int main()
+{
+    int n,*s;
+	int front=0,rear=-1;
+	printf("Enter the length of the array\n");
+	scanf("%d",&n);
+	s=(int *)malloc(n*sizeof(s));
+    while (1)
+    {
+        int ch;
+        printf("Enter the choice\n1.Insert\n2.Delete\n3.Display\n0.Exit\n");
+        scanf("%d",&ch);
+        switch (ch)
+        {
+        case 1:
+            push(s,&rear,n);
+            break;
+        case 2:pop(s,&front,&rear,&n);
+            break;
+        case 3:display(s,front,rear);
+            break;
+        case 0:exit(0);
+        default:printf("Enter the value within range\n");
+            break;
+        }
+    }
+	return 0;
+}
