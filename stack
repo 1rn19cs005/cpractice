@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 3
+void push(int a[],int *top)
+{
+    int ele;
+    if((*top)==MAX){
+        a=(int*)realloc(a,MAX*2);
+        printf("Size Doubled...\n");
+    }
+    printf("Enter ele: ");
+    scanf("%d",&ele);
+    a[++(*top)]=ele;
+}
+
+void pop(int a[],int *top)
+{
+    if((*top)==-1)
+    {
+        printf("Underflow\n");
+        return;
+    }
+    printf("Popped ele: %d\n",a[(*top)]);
+    (*top)--;
+}
+
+void display(int a[],int top)
+{
+    if(top==-1)
+        printf("Stack Empty\n");
+    for(int i=top;i>=0;i--)
+        printf("%d ",a[i]);
+}
+int main()
+{
+    int ch,top=-1;
+    int *a;
+    a=(int*)malloc(sizeof(int)*MAX);
+    for(;;)
+    {
+        printf("1.Push\n2.Pop\n3.Display\n4.Exit\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1: push(a,&top); break;
+            case 2: pop(a,&top); break;
+            case 3: display(a,top); break;
+            case 4: return 0;
+        }
+    }
+    return 0;
+}
