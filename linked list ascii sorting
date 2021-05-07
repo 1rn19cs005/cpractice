@@ -1,0 +1,120 @@
+#include<iostream>
+#include<conio.h>
+#include<stdlib.h>
+#include<string.h>
+using namespace std;
+
+struct node 
+{ 
+	char name[20];
+	struct node *link;
+};
+
+typedef struct node* NODE;
+
+
+
+NODE getnode(){
+    NODE temp;
+    temp = (NODE)malloc(sizeof(struct node));
+    if(temp==NULL){
+        cout<<"memory is not allocated\n";
+        exit(0);
+    }
+    return temp;
+}
+
+NODE insert(NODE first){
+    NODE temp;
+    temp = getnode();
+    cout<<"enter the name to be inserted\n";
+    cin>>temp->name;
+    temp->link=NULL;
+    NODE cur=first, prev=NULL;
+    int flag=0;
+    //empty
+    if (first==NULL){
+        first =temp;
+        return first;
+    }
+    //one element in the list
+    else if(first->link==NULL){
+        if(strcmp(temp->name,first->name)<0){
+            temp->link=first;
+            first=temp;
+            return first;
+        }
+        else {
+            first->link=temp;
+            return first;
+        }
+    }
+    //more than one element in the list
+    while(flag==0){
+        while(cur!=NULL){                                   //looping till the end of the list
+            if(strcmp(temp->name,cur->name) > 0){           //comparing tem name with the list names
+                prev=cur;
+                cur = cur->link;
+            }
+            else{                                           //insering in the middle of the list
+                if(prev!=NULL){
+                    temp->link=cur;
+                    prev->link=temp;
+                    flag=1;
+                    break;
+                }
+                else{                                      //insering at the front of the list
+                    temp->link=cur;
+                    first=temp;
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==1){
+                break;
+            }
+        }
+        if(flag!=1){                                       //inserting at the end of the list
+            prev->link=temp;
+            flag=1;
+            break;
+        }
+    }
+    
+    return first;
+}
+
+
+void display(NODE first){
+    NODE cur = first;
+    if(first==NULL){
+        cout<<"empty list";
+        return;
+    }
+    cout<<"names in the lists:\n";
+    while(cur!=NULL){
+        cout<<cur->name<<"\n";
+        cur=cur->link;
+    }
+    return;
+}
+
+int main(){
+    NODE first;
+    first = insert(first);
+    while(1){
+        int c;
+        cout<<"select the option\n";
+        cout<<"1.insert\n2.display\n3.exit\n";
+        cin>>c;
+        switch(c){
+            case 1: first=insert(first);
+                    break;
+            case 2: display(first);
+                    break;
+            case 3: return 0;
+            default: cout<<"enter the valid choice\n";
+        }
+    }
+    return 0;
+}
